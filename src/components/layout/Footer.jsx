@@ -17,9 +17,9 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-theme-primary text-white pt-16 pb-12 border-t border-white/10 transition-colors duration-300">
+    <footer className="bg-theme-primary text-white pt-14 sm:pt-16 pb-10 sm:pb-12 border-t border-white/10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-white/10">
           {/* Col 1: Brand & Newsletter */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
@@ -45,7 +45,7 @@ export const Footer = () => {
                   <CheckCircle2 className="w-4 h-4" /> Thank you for subscribing! Check your inbox soon.
                 </div>
               ) : (
-                <form onSubmit={handleNewsletter} className="flex gap-2 max-w-md">
+                <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-2 max-w-md">
                   <input
                     type="email"
                     required
@@ -54,7 +54,7 @@ export const Footer = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     className="flex-1 px-4 py-2.5 text-xs sm:text-sm bg-white/10 border border-white/20 rounded-full text-white placeholder:text-slate-400 focus:outline-none focus:border-theme-accent transition-all"
                   />
-                  <Button type="submit" variant="accent" size="sm" icon={ArrowRight}>
+                  <Button type="submit" variant="accent" size="sm" icon={ArrowRight} className="w-full sm:w-auto">
                     Join
                   </Button>
                 </form>
