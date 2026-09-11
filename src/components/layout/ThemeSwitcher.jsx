@@ -26,8 +26,8 @@ export const ThemeSwitcher = ({ isScrolled = true }) => {
         onClick={() => setIsOpen(!isOpen)}
         className={`flex items-center gap-2 px-3.5 py-2 rounded-full border text-xs font-bold shadow-xs transition-all duration-200 ${
           isScrolled
-            ? 'border-theme hover:border-theme-primary text-theme-main bg-theme-surface'
-            : 'border-white/20 hover:border-white/40 text-white bg-white/10 backdrop-blur-md'
+            ? 'border-theme/70 hover:border-theme-primary text-theme-main bg-theme-surface/90 backdrop-blur-md hover:bg-theme-surface-alt'
+            : 'border-white/25 hover:border-white/50 text-white bg-white/15 backdrop-blur-lg hover:bg-white/25'
         }`}
         aria-label="Select website theme"
         aria-expanded={isOpen}
@@ -48,7 +48,7 @@ export const ThemeSwitcher = ({ isScrolled = true }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute right-0 mt-2 w-72 p-4 bg-white rounded-3xl shadow-2xl border border-slate-200 z-50 overflow-hidden text-slate-900"
+            className="absolute right-0 mt-2.5 w-72 p-4 bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-slate-200 z-50 overflow-hidden text-slate-900"
           >
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
               <span className="text-xs font-bold font-heading text-slate-900 uppercase tracking-wider">
@@ -70,7 +70,7 @@ export const ThemeSwitcher = ({ isScrolled = true }) => {
                     }}
                     className={`w-full flex items-center justify-between p-3 rounded-2xl border transition-all text-left group ${
                       isSelected
-                        ? 'border-indigo-600 bg-indigo-50/60 shadow-xs font-bold'
+                        ? 'border-indigo-600 bg-indigo-50/70 shadow-xs font-bold'
                         : 'border-slate-100 hover:border-slate-300 hover:bg-slate-50'
                     }`}
                   >

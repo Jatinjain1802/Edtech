@@ -6,10 +6,16 @@ import Button from '../common/Button';
 import ThemeSwitcher from './ThemeSwitcher';
 import { useTheme } from '../../theme/ThemeContext';
 
+/**
+ * LEARNING POINT (Adaptive Glassmorphism with Backdrop-Blur):
+ * `backdrop-blur-xl` combines background translucency (`bg-theme-surface/80` or `bg-white/10`),
+ * subtle frosted border strokes (`border-white/10` or `border-theme/50`), and subtle drop shadows
+ * so the Navbar stays readable and elegant over both light & dark sections.
+ */
 export const Navbar = ({ onOpenAuth }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { activeTheme, themeKey, setThemeKey, themesList } = useTheme();
+  const { themeKey, setThemeKey, themesList } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,8 +45,8 @@ export const Navbar = ({ onOpenAuth }) => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-theme-surface/95 backdrop-blur-md shadow-xs py-3.5 border-b border-theme text-theme-main'
-            : 'bg-transparent py-5 text-white'
+            ? 'bg-theme-surface/85 backdrop-blur-xl shadow-md border-b border-theme/60 py-3.5 text-theme-main'
+            : 'bg-white/10 backdrop-blur-xl border-b border-white/15 py-5 text-white shadow-sm'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,7 +57,7 @@ export const Navbar = ({ onOpenAuth }) => {
                 className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold shadow-md group-hover:scale-105 transition-transform ${
                   isScrolled
                     ? 'bg-theme-primary text-theme-accent'
-                    : 'bg-white/15 backdrop-blur-md text-theme-accent border border-white/20'
+                    : 'bg-white/20 backdrop-blur-md text-theme-accent border border-white/25'
                 }`}
               >
                 <GraduationCap className="w-6 h-6" />
@@ -89,8 +95,10 @@ export const Navbar = ({ onOpenAuth }) => {
 
               <button
                 onClick={() => onOpenAuth('login')}
-                className={`text-sm font-semibold px-3 py-2 transition-colors ${
-                  isScrolled ? 'text-theme-main hover:text-theme-primary' : 'text-white hover:text-theme-accent'
+                className={`text-sm font-semibold px-3.5 py-2 rounded-full transition-colors ${
+                  isScrolled
+                    ? 'text-theme-main hover:text-theme-primary hover:bg-theme-surface-alt'
+                    : 'text-white hover:text-theme-accent hover:bg-white/10'
                 }`}
               >
                 Log In
@@ -105,12 +113,14 @@ export const Navbar = ({ onOpenAuth }) => {
               </Button>
             </div>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile Controls */}
             <div className="flex items-center gap-2 lg:hidden">
               <ThemeSwitcher isScrolled={isScrolled} />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`p-2 focus:outline-none ${isScrolled ? 'text-theme-main' : 'text-white'}`}
+                className={`p-2 rounded-xl focus:outline-none ${
+                  isScrolled ? 'text-theme-main hover:bg-theme-surface-alt' : 'text-white hover:bg-white/15'
+                }`}
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -128,7 +138,7 @@ export const Navbar = ({ onOpenAuth }) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed inset-x-0 top-[72px] z-30 bg-theme-surface text-theme-main border-b border-theme shadow-xl lg:hidden overflow-hidden"
+            className="fixed inset-x-0 top-[72px] z-30 bg-theme-surface/95 backdrop-blur-2xl text-theme-main border-b border-theme shadow-2xl lg:hidden overflow-hidden"
           >
             <div className="px-6 py-6 space-y-4">
               <div className="flex flex-col space-y-3">
