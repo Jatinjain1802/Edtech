@@ -2,11 +2,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-/**
- * LEARNING POINT (Framer Motion scroll reveal):
- * Using `whileInView` and `viewport={{ once: true }}` triggers an animation 
- * only when the user scrolls down to that element, keeping performance snappy.
- */
 export const SectionHeader = ({
   badge = null,
   title,
@@ -25,17 +20,20 @@ export const SectionHeader = ({
     >
       {badge && (
         <div className="inline-block mb-3">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-indigo-50 text-[#4F46E5] border border-indigo-100">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-theme-accent text-theme-accent-contrast border border-theme-primary/10">
             {badge}
           </span>
         </div>
       )}
 
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-heading text-[#111827] tracking-tight leading-tight">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-heading text-theme-main tracking-tight leading-tight">
         {highlightWord ? (
           <>
             {title.split(highlightWord)[0]}
-            <span className="gradient-text-indigo">{highlightWord}</span>
+            <span className="relative inline-block text-theme-primary px-1">
+              <span className="relative z-10">{highlightWord}</span>
+              <span className="absolute bottom-1.5 left-0 right-0 h-3 bg-theme-accent/60 -z-0 rounded-sm" />
+            </span>
             {title.split(highlightWord)[1]}
           </>
         ) : (
@@ -44,7 +42,7 @@ export const SectionHeader = ({
       </h2>
 
       {description && (
-        <p className="mt-4 text-base sm:text-lg text-[#6B7280] font-body leading-relaxed max-w-2xl mx-auto">
+        <p className="mt-4 text-base sm:text-lg text-theme-muted font-body leading-relaxed max-w-2xl mx-auto">
           {description}
         </p>
       )}

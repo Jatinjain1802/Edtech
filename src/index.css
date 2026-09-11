@@ -1,19 +1,30 @@
 @import "tailwindcss";
 
-@theme {
-  --font-heading: "Sora", sans-serif;
-  --font-body: "Inter", sans-serif;
-  --color-indigo-primary: #4F46E5;
-  --color-purple-secondary: #7C3AED;
-  --color-accent-orange: #F59E0B;
-  --color-emerald-success: #10B981;
-  --color-bg-main: #FAFAFC;
-  --color-text-main: #111827;
-  --color-text-muted: #6B7280;
-  --color-border-subtle: #E5E7EB;
-}
-
 @layer base {
+  :root {
+    --color-primary: #101828;
+    --color-primary-hover: #1D2939;
+    --color-accent: #C7F36B;
+    --color-accent-hover: #B5E853;
+    --color-accent-text: #101828;
+    --color-bg-main: #F7F7F2;
+    --color-surface: #FFFFFF;
+    --color-surface-alt: #E8EAE3;
+    --color-secondary: #E8EAE3;
+    --color-text-main: #20252D;
+    --color-text-muted: #64748B;
+    --color-border: #E2E4DC;
+    --color-border-subtle: #F1F3ED;
+    --color-card-shadow: rgba(16, 24, 40, 0.06);
+    --font-heading: 'Sora', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  /* Global Theme Color Transition (Smooth 300ms ease, no full-screen flash) */
+  *, *::before, *::after {
+    transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, fill 300ms ease;
+  }
+
   body {
     font-family: var(--font-body);
     background-color: var(--color-bg-main);
@@ -26,7 +37,55 @@
   }
 }
 
-/* Custom Utilities for Premium Design */
+/* Custom Semantic Theme Classes */
+.bg-theme-main {
+  background-color: var(--color-bg-main);
+}
+
+.bg-theme-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-theme-surface-alt {
+  background-color: var(--color-surface-alt);
+}
+
+.bg-theme-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-theme-accent {
+  background-color: var(--color-accent);
+}
+
+.text-theme-main {
+  color: var(--color-text-main);
+}
+
+.text-theme-muted {
+  color: var(--color-text-muted);
+}
+
+.text-theme-primary {
+  color: var(--color-primary);
+}
+
+.text-theme-accent {
+  color: var(--color-accent);
+}
+
+.text-theme-accent-contrast {
+  color: var(--color-accent-text);
+}
+
+.border-theme {
+  border-color: var(--color-border);
+}
+
+.border-theme-subtle {
+  border-color: var(--color-border-subtle);
+}
+
 .font-heading {
   font-family: 'Sora', sans-serif;
 }
@@ -36,48 +95,25 @@
 }
 
 .shadow-soft {
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04), 0px 4px 12px rgba(0, 0, 0, 0.02);
+  box-shadow: 0px 10px 30px var(--color-card-shadow), 0px 4px 12px rgba(0, 0, 0, 0.02);
 }
 
 .shadow-soft-hover {
-  box-shadow: 0px 20px 40px rgba(79, 70, 229, 0.08), 0px 8px 24px rgba(0, 0, 0, 0.03);
+  box-shadow: 0px 20px 40px var(--color-card-shadow), 0px 8px 24px rgba(0, 0, 0, 0.04);
 }
 
-.shadow-soft-lg {
-  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.08);
-}
-
-.gradient-text-indigo {
-  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+.gradient-text-accent {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gradient-text-orange {
-  background: linear-gradient(135deg, #F59E0B 0%, #EA580C 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-bg-hero {
-  background: radial-gradient(circle at 70% 20%, rgba(124, 58, 237, 0.05) 0%, rgba(79, 70, 229, 0.03) 50%, rgba(250, 250, 252, 0) 100%);
-}
-
-.card-radius {
-  border-radius: 28px;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #F1F5F9;
-}
-::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+/* Reduced motion accessibility support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

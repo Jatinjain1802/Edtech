@@ -7,7 +7,7 @@ import { Clock, ArrowUpRight, Calendar } from 'lucide-react';
 
 export const BlogSection = ({ onSelectArticle }) => {
   return (
-    <section id="blog" className="py-20 md:py-28 bg-white border-t border-slate-200/60">
+    <section id="blog" className="py-20 md:py-28 bg-theme-surface border-t border-theme-subtle transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="KNOWLEDGE HUB"
@@ -27,7 +27,7 @@ export const BlogSection = ({ onSelectArticle }) => {
               transition={{ duration: 0.4, delay: idx * 0.1 }}
               whileHover={{ y: -6 }}
               onClick={() => onSelectArticle(article)}
-              className="bg-white rounded-[28px] border border-slate-200/90 overflow-hidden shadow-soft hover:shadow-soft-hover transition-all duration-300 flex flex-col justify-between cursor-pointer group"
+              className="bg-theme-surface rounded-[28px] border border-theme overflow-hidden shadow-soft hover:shadow-soft-hover transition-all duration-300 flex flex-col justify-between cursor-pointer group"
             >
               <div>
                 {/* Thumbnail Image */}
@@ -37,14 +37,14 @@ export const BlogSection = ({ onSelectArticle }) => {
                     alt={article.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-indigo-600 shadow-xs">
+                  <div className="absolute top-4 left-4 bg-theme-accent text-theme-accent-contrast px-3 py-1 rounded-full text-xs font-bold shadow-xs">
                     {article.category}
                   </div>
                 </div>
 
                 {/* Body Content */}
                 <div className="p-6">
-                  <div className="flex items-center gap-4 text-xs text-slate-400 mb-3">
+                  <div className="flex items-center gap-4 text-xs text-theme-muted mb-3">
                     <span className="flex items-center gap-1 font-medium">
                       <Calendar className="w-3.5 h-3.5" /> {article.date}
                     </span>
@@ -53,20 +53,20 @@ export const BlogSection = ({ onSelectArticle }) => {
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold font-heading text-[#111827] group-hover:text-indigo-600 transition-colors line-clamp-2 mb-3">
+                  <h3 className="text-lg font-bold font-heading text-theme-main group-hover:text-theme-primary transition-colors line-clamp-2 mb-3">
                     {article.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#6B7280] font-body line-clamp-2 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-theme-muted font-body line-clamp-2 leading-relaxed">
                     {article.snippet}
                   </p>
                 </div>
               </div>
 
               {/* Read More Footer */}
-              <div className="px-6 pb-6 pt-2 flex items-center justify-between text-xs font-bold text-indigo-600 group-hover:text-indigo-700">
+              <div className="px-6 pb-6 pt-2 flex items-center justify-between text-xs font-bold text-theme-primary">
                 <span>Read Full Article</span>
-                <div className="w-7 h-7 rounded-full bg-indigo-50 group-hover:bg-indigo-600 group-hover:text-white flex items-center justify-center transition-colors">
+                <div className="w-7 h-7 rounded-full bg-theme-surface-alt group-hover:bg-theme-primary group-hover:text-white flex items-center justify-center transition-colors">
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>

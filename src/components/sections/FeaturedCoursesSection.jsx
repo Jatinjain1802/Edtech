@@ -8,10 +8,6 @@ import RatingStars from '../common/RatingStars';
 import { coursesData } from '../../data/coursesData';
 import { Users, Clock, ArrowRight, Eye } from 'lucide-react';
 
-/**
- * LEARNING POINT (React useMemo & Filter Logic):
- * `useMemo` caches filtered computations so React doesn't re-run expensive array filtering on unnecessary re-renders.
- */
 export const FeaturedCoursesSection = ({ onSelectCourse, selectedCategoryId, setSelectedCategoryId }) => {
   const [activeTab, setActiveTab] = useState(selectedCategoryId || 'all');
 
@@ -28,7 +24,7 @@ export const FeaturedCoursesSection = ({ onSelectCourse, selectedCategoryId, set
   }, [activeTab]);
 
   return (
-    <section id="courses" className="py-20 md:py-28 bg-white border-t border-slate-200/60">
+    <section id="courses" className="py-20 md:py-28 bg-theme-surface border-t border-theme-subtle transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="CURATED MASTERCLASSES"
@@ -45,8 +41,8 @@ export const FeaturedCoursesSection = ({ onSelectCourse, selectedCategoryId, set
               onClick={() => setActiveTab(tab.id)}
               className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 activeTab === tab.id
-                  ? 'bg-[#4F46E5] text-white shadow-md shadow-indigo-500/20'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'bg-theme-primary text-white shadow-md'
+                  : 'bg-theme-surface-alt text-theme-muted hover:text-theme-main'
               }`}
             >
               {tab.label}
@@ -64,7 +60,7 @@ export const FeaturedCoursesSection = ({ onSelectCourse, selectedCategoryId, set
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
               whileHover={{ y: -6 }}
-              className="bg-white rounded-[28px] border border-slate-200/90 overflow-hidden shadow-soft hover:shadow-soft-hover transition-all duration-300 flex flex-col justify-between"
+              className="bg-theme-surface rounded-[28px] border border-theme overflow-hidden shadow-soft hover:shadow-soft-hover transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Course Image */}
@@ -75,7 +71,7 @@ export const FeaturedCoursesSection = ({ onSelectCourse, selectedCategoryId, set
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute top-4 left-4">
-                    <Badge variant="indigo">{course.badge}</Badge>
+                    <Badge variant="accent">{course.badge}</Badge>
                   </div>
                   <button
                     onClick={() => onSelectCourse(course)}
@@ -87,9 +83,8 @@ export const FeaturedCoursesSection = ({ onSelectCourse, selectedCategoryId, set
 
                 {/* Course Body */}
                 <div className="p-6">
-                  {/* Category & Duration */}
-                  <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
-                    <span className="font-semibold text-indigo-600 uppercase tracking-wider">
+                  <div className="flex items-center justify-between text-xs text-theme-muted mb-3">
+                    <span className="font-semibold text-theme-primary uppercase tracking-wider">
                       {course.categoryName}
                     </span>
                     <span className="flex items-center gap-1">
@@ -97,10 +92,9 @@ export const FeaturedCoursesSection = ({ onSelectCourse, selectedCategoryId, set
                     </span>
                   </div>
 
-                  {/* Title */}
                   <h3
                     onClick={() => onSelectCourse(course)}
-                    className="text-lg font-bold font-heading text-[#111827] hover:text-[#4F46E5] transition-colors cursor-pointer line-clamp-2 mb-3"
+                    className="text-lg font-bold font-heading text-theme-main hover:text-theme-primary transition-colors cursor-pointer line-clamp-2 mb-3"
                   >
                     {course.title}
                   </h3>
@@ -110,18 +104,18 @@ export const FeaturedCoursesSection = ({ onSelectCourse, selectedCategoryId, set
                     <img
                       src={course.instructor.avatar}
                       alt={course.instructor.name}
-                      className="w-8 h-8 rounded-full object-cover border border-slate-200"
+                      className="w-8 h-8 rounded-full object-cover border border-theme"
                     />
                     <div className="text-xs">
-                      <span className="font-semibold text-slate-800 block">{course.instructor.name}</span>
-                      <span className="text-slate-400">{course.instructor.role}</span>
+                      <span className="font-semibold text-theme-main block">{course.instructor.name}</span>
+                      <span className="text-theme-muted">{course.instructor.role}</span>
                     </div>
                   </div>
 
                   {/* Rating & Enrolled Stats */}
-                  <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                  <div className="flex items-center justify-between pt-3 border-t border-theme-subtle text-xs">
                     <RatingStars rating={course.rating} reviewsCount={course.reviewsCount} />
-                    <span className="text-slate-500 flex items-center gap-1 font-medium">
+                    <span className="text-theme-muted flex items-center gap-1 font-medium">
                       <Users className="w-3.5 h-3.5" /> {course.studentsCount}
                     </span>
                   </div>
@@ -131,8 +125,8 @@ export const FeaturedCoursesSection = ({ onSelectCourse, selectedCategoryId, set
               {/* Price & Action */}
               <div className="px-6 pb-6 pt-2 flex items-center justify-between">
                 <div>
-                  <span className="text-2xl font-extrabold font-heading text-[#111827]">{course.price}</span>
-                  <span className="text-xs text-slate-400 line-through ml-1.5">{course.originalPrice}</span>
+                  <span className="text-2xl font-extrabold font-heading text-theme-main">{course.price}</span>
+                  <span className="text-xs text-theme-muted line-through ml-1.5">{course.originalPrice}</span>
                 </div>
                 <Button
                   variant="primary"
